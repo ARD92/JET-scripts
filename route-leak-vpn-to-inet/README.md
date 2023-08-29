@@ -16,6 +16,8 @@ set routing-options resolution rib inet.0 resolution-ribs inet.3
 
 ## Configuration for app
 ```
+set system services extension-service request-response grpc clear-text address 127.0.0.1
+set system services extension-service request-response grpc clear-text port 50051
 set system extensions extension-service application file route-leak.py arguments "-nhip 98.98.98.98 -comm 9191:9191"
 set system extensions extension-service application file route-leak.py daemonize
 set system extensions extension-service application file route-leak.py username root
@@ -49,7 +51,7 @@ root@dcu# run show system processes | grep route-leak
 
 ## Logs
 Logs are written to /var/log/route-leak.log
-
+```
 root@dcu# run show log route-leak.log
 2023-02-06 03:42:54 root - INFO - True
 2023-02-06 03:42:54 root - INFO - Adding route 98.0.0.2
@@ -64,3 +66,4 @@ root@dcu# run show log route-leak.log
 2023-02-06 03:43:20 root - INFO - Adding route 98.0.0.3
 2023-02-06 03:43:21 root - INFO - Adding route 98.0.0.1
 2023-02-06 03:43:21 root - INFO - Adding route 98.0.0.4
+```
